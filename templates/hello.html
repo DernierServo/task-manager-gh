@@ -3,3 +3,9 @@
 {% else %}
     <a href = "{{ url_for('index') }}">Ir a Inicio</a>
 {% endif %}
+
+<url>
+    {%  for todo in todos %}
+        <li>{{todo  }}</li>
+    {% endfor %}
+</url>
