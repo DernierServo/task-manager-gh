@@ -3,6 +3,15 @@ from flask import Flask, request, make_response, redirect, render_template
 app = Flask(__name__)
 todos = ['Read books', 'Cook the dinner', 'Study for an exam']
 
+@app.errorhandler(404)
+def not_found(error):
+	return render_template('404.html', error=error)
+
+@app.errorhandler(500)
+def server_error(error):
+	return render_template('500.html', error=error)
+
+
 @app.route('/')
 def index():
 	user_ip = request.remote_addr
