@@ -1,3 +1,4 @@
+<!--
 <nav>
 	<url>
 		<img src="{{ url_for('static', filename='images/ds_icon.png')}}" alt="Ds Logo">
@@ -5,3 +6,33 @@
 		<li><a href="https://platzi.com/@DServo/">DServo in Platzi</a></li>	
 	</url>
 </nav>
+-->
+  
+
+<div class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+      <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>Inicio
+          <a class="navbar-brand" href="{{ url_for('index') }}">
+              <img src="{{ url_for('static', filename='images/ds_icon.png') }}"
+                   style="max-width: 48px"
+                   alt="Platzi logo">
+          </a>
+      </div>
+
+      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li><a href="{{ url_for('index') }}">Begining</a></li>
+              <li><a href="https://platzi.com/@DServo" target="_blank">DServo in Platzi</a></li>
+          </ul>
+      </div>
+  </div>
+</div>
