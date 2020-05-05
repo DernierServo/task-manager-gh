@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, redirect, render_template, session, url_for
+from flask import Flask, request, make_response, redirect, render_template, session, url_for, flash
 from flask_bootstrap import Bootstrap
 from uuid import uuid4
 from flask_wtf import FlaskForm
@@ -53,6 +53,9 @@ def hello():
 		username = login_form.username.data
 		#guardando el username en la sesion:
 		session['username'] = username
+
+		flash('User name was registered successfully!')
+
 		return redirect(url_for('index'))
 
 	return render_template('hello.html', **context)
