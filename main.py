@@ -1,22 +1,20 @@
-from flask import Flask, request, make_response, redirect, render_template, session, url_for, flash
+from flask import request, make_response, redirect, render_template, session, url_for, flash
 from flask_bootstrap import Bootstrap
-from uuid import uuid4
-from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, SubmitField	#Import fields
-from wtforms.validators import DataRequired
+from app.forms import LoginForm
 
+import unittest
+from app import create_app
 
-app = Flask(__name__)
-secret_key = str(uuid4())
-app.config['SECRET_KEY'] = secret_key
-bootstrap = Bootstrap(app)
+app = create_app()
+
 todos = ['Read books', 'Cook the dinner', 'Study for an exam']
 
 
-class LoginForm(FlaskForm):
-	username = StringField('User name', validators=[DataRequired()])
-	password = PasswordField('Password', validators=[DataRequired()])
-	submit = SubmitField('Send')
+@app.cli.command()
+def test():
+	tests = unittest.TestLoader().discover('tests')
+	unittest.TextTestRunner().run(tests)
+
 
 @app.errorhandler(404)
 def not_found(error):
@@ -53,9 +51,7 @@ def hello():
 		username = login_form.username.data
 		#guardando el username en la sesion:
 		session['username'] = username
-
 		flash('User name was registered successfully!')
-
 		return redirect(url_for('index'))
 
 	return render_template('hello.html', **context)
